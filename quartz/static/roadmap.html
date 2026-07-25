@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* ================================================================
+     INTERVIEW ROADMAP — transit map. Edit the ROADMAP array at the
+     bottom to add tracks/stations. Progress saved in localStorage.
+     Host at quartz/static/roadmap.html and iframe it, or open direct.
+     ================================================================ */
+  :root{
+    --bg:#14171a; --surface:#1b1f24; --surface-2:#232830;
+    --text:#EDEBE5; --muted:#8A93A0; --hair:#2c333c; --focus:#dba24a;
+    --l-java:#E4B363; --l-conc:#E08E45; --l-spring:#6DA34D; --l-micro:#C1666B;
+    --l-patt:#9A7BB5; --l-db:#5B8FB0; --l-sys:#7C9CBF; --l-dsa:#4FB0A5;
+    --l-proto:#6BA4D9; --l-cicd:#D97E5B; --l-aws:#EF9F4A; --l-ai:#C98BB9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(900px 500px at 88% -10%,rgba(201,139,185,.08),transparent 60%),var(--bg);
+    color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 96px}
+
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 72%,rgba(20,23,26,.85));
+    backdrop-filter:blur(6px);padding:22px 0 15px;margin-bottom:12px;border-bottom:1px solid var(--hair)}
+  .eyebrow{font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4.5vw,40px);letter-spacing:-.02em;margin:0 0 14px}
+  .journey{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .bar{flex:1 1 220px;height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden;min-width:180px;border:1px solid var(--hair)}
+  .bar>i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--l-dsa),var(--l-java),var(--l-ai));transition:width .5s cubic-bezier(.2,.7,.2,1)}
+  .count{font:700 15px/1 "JetBrains Mono",monospace;white-space:nowrap}
+  .count b{color:var(--l-java)}
+  .reset{margin-left:auto;background:none;border:1px solid var(--hair);color:var(--muted);font:500 12px "Inter";padding:7px 12px;border-radius:8px;cursor:pointer}
+  .reset:hover{color:var(--text);border-color:var(--muted)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .lg{padding:1px 6px;border-radius:5px;font:600 10px "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.05em}
+  .lg.must{color:#F0A9A0;background:rgba(193,102,107,.16)} .lg.senior{color:#C6A9E0;background:rgba(154,123,181,.16)} .lg.new{color:#E8C57A;background:rgba(224,142,69,.18)}
+
+  .track{margin:26px 0}
+  .track-head{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+  .track-head h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.01em;margin:0}
+  .line-pct{font:500 12px "JetBrains Mono",monospace;color:var(--muted)}
+  .line-pill{width:22px;height:6px;border-radius:99px;flex:none;align-self:center}
+  .line{position:relative;margin-left:9px;padding-left:30px}
+  .line::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;border-radius:99px;background:var(--line,#666);opacity:.45}
+
+  .station{position:relative;padding:8px 0}
+  .dot{position:absolute;left:-30px;top:10px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--line,#666);cursor:pointer;padding:0;transition:transform .15s,box-shadow .15s;display:grid;place-items:center}
+  .dot.interchange{width:22px;height:22px;left:-32px;top:8px}
+  .dot:hover{transform:scale(1.15)} .dot:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .station.done>.dot{background:var(--line);box-shadow:0 0 0 4px color-mix(in srgb,var(--line) 22%,transparent)}
+  .station.done>.dot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--bg)}
+  .dot.interchange::before{content:"";position:absolute;inset:4px;border-radius:50%;border:2px solid var(--bg)}
+  .stop{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .name{font-weight:600;font-size:15px;color:var(--text);text-decoration:none;border-bottom:1px solid transparent}
+  a.name:hover{border-bottom-color:var(--line)}
+  .station.done .name{color:var(--muted)}
+  .tag{font:600 10px "JetBrains Mono",monospace;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:var(--surface-2);color:var(--muted)}
+  .tag.must{color:#F0A9A0;background:rgba(193,102,107,.16)} .tag.senior{color:#C6A9E0;background:rgba(154,123,181,.16)} .tag.new{color:#E8C57A;background:rgba(224,142,69,.18)}
+  .branch{margin:5px 0 2px 4px;padding-left:22px;position:relative;display:flex;flex-wrap:wrap;gap:6px 14px}
+  .branch::before{content:"";position:absolute;left:0;top:-2px;bottom:10px;width:2px;background:var(--line);opacity:.3;border-radius:99px}
+  .sub{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);cursor:pointer}
+  .sub .mini{width:11px;height:11px;border-radius:50%;border:2px solid var(--line);background:var(--bg);flex:none}
+  .sub.done .mini{background:var(--line)} .sub.done{color:var(--text)} .sub:hover{color:var(--text)}
+  footer{margin-top:36px;color:var(--muted);font-size:13px;border-top:1px solid var(--hair);padding-top:16px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Backend · 13 yrs · Job Search</p>
+    <h1>Interview Roadmap</h1>
+    <div class="journey">
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="count"><b id="doneN">0</b> / <span id="totalN">0</span> stations</div>
+      <button class="reset" id="resetBtn">Reset</button>
+    </div>
+    <div class="legend">
+      <span><i class="lg must">must</i> high-frequency, know cold</span>
+      <span><i class="lg senior">senior</i> depth for senior rounds</span>
+      <span><i class="lg new">new</i> gap to close — learn from scratch</span>
+    </div>
+  </header>
+  <main id="map"></main>
+  <footer>Click a <strong>station dot</strong> to mark it covered (saved on this device). Click a
+    <strong>name</strong> to open its note. You don't have to hold this in your head — that's what the map is for.</footer>
+</div>
+
+<script>
+/* ===== ROADMAP DATA =========================================================
+   station: { name, tag?('must'|'senior'|'new'), href?, subs?:[{name,href?}] }
+   Set href to a note/folder on your site (relative, e.g. "Java/"). target=_top
+   is applied so links open the full page when this is embedded in an iframe.
+   ============================================================================ */
+const ROADMAP = [
+  { track:"Java Core", color:"--l-java", stations:[
+    { name:"Generics — bounded, unbounded, PECS", tag:"must", href:"Java/" },
+    { name:"Collections internals", href:"Java/", subs:[{name:"HashMap resize/treeify"},{name:"ConcurrentHashMap"}] },
+    { name:"JVM & Garbage Collection", href:"Java/" },
+    { name:"Records, sealed, pattern matching", tag:"must", href:"Java/" },
+    { name:"Optional & Lambdas / Streams", href:"Java/" },
+  ]},
+  { track:"Concurrency", color:"--l-conc", stations:[
+    { name:"Threads, ExecutorService, pools", tag:"new", href:"Java/" },
+    { name:"CompletableFuture", tag:"must", href:"Java/", subs:[{name:"thenCompose vs thenCombine"}] },
+    { name:"volatile, synchronized, locks", tag:"new", href:"Java/", subs:[{name:"happens-before"},{name:"CAS / atomics"}] },
+    { name:"Virtual threads (Loom)", tag:"senior", href:"Java/" },
+    { name:"Fork/Join & NIO (aware-of)", href:"Java/" },
+  ]},
+  { track:"Spring", color:"--l-spring", stations:[
+    { name:"IoC, beans, AOP proxies", tag:"must", href:"Spring-Boot/" },
+    { name:"Caching (@Cacheable/Put/Evict)", href:"Spring-Boot/" },
+    { name:"Transactions & propagation", tag:"must", href:"Spring-Boot/" },
+    { name:"Spring Data & JPA pitfalls", href:"Spring-Boot/" },
+    { name:"Spring AI (your AI-in-Java lane)", tag:"senior", href:"AI/" },
+  ]},
+  { track:"Microservices & Distributed Tx", color:"--l-micro", stations:[
+    { name:"Sync vs async communication", href:"Microservices-Patterns/" },
+    { name:"Resilience: retry, circuit breaker, bulkhead", tag:"must", href:"Microservices-Patterns/" },
+    { name:"Distributed transactions", tag:"new", href:"Microservices-Patterns/", subs:[{name:"Saga (choreography vs orchestration)"},{name:"2PC & why it's avoided"}] },
+    { name:"Kafka & messaging", href:"Kafka/", subs:[{name:"partitions & ordering"},{name:"consumer groups"}] },
+    { name:"Idempotency & Outbox", tag:"senior", href:"Microservices-Patterns/" },
+  ]},
+  { track:"Design Patterns", color:"--l-patt", stations:[
+    { name:"GoF creational", href:"Design-Pattern-GOF/", subs:[{name:"Factory / Builder / Singleton"}] },
+    { name:"GoF structural", href:"Design-Pattern-GOF/", subs:[{name:"Adapter / Decorator / Proxy"}] },
+    { name:"GoF behavioral", href:"Design-Pattern-GOF/", subs:[{name:"Strategy / Observer / Template"}] },
+    { name:"Cloud patterns (recall, don't re-read)", tag:"must", href:"Design-Pattern-GOF/" },
+  ]},
+  { track:"Databases", color:"--l-db", stations:[
+    { name:"RDBMS internals (your strength)", href:"#" },
+    { name:"Indexing & query plans", tag:"must", href:"#" },
+    { name:"Isolation levels & locking", tag:"must", href:"#" },
+    { name:"NoSQL & when to use it", href:"#" },
+  ]},
+  { track:"System Design", color:"--l-sys", stations:[
+    { name:"Estimation / back-of-envelope", href:"System-Design/" },
+    { name:"Load balancing & sharding", tag:"must", href:"System-Design/" },
+    { name:"CAP, consistency, quorums", tag:"senior", href:"System-Design/" },
+    { name:"Consistent hashing", href:"System-Design/" },
+    { name:"Case studies (URL shortener, feed, chat)", tag:"must", href:"System-Design/" },
+  ]},
+  { track:"DSA", color:"--l-dsa", stations:[
+    { name:"Two Pointers", tag:"new", href:"DSA/" },
+    { name:"Sliding Window", tag:"new", href:"DSA/" },
+    { name:"Hashing patterns", tag:"must", href:"DSA/" },
+    { name:"Trees & Graphs (BFS/DFS)", tag:"new", href:"DSA/" },
+    { name:"Dynamic Programming", tag:"new", href:"DSA/" },
+  ]},
+  { track:"Protocols & Networking", color:"--l-proto", stations:[
+    { name:"TCP/IP & OSI vs 4-layer", href:"#" },
+    { name:"HTTP request/response", href:"#" },
+    { name:"WebSocket (upgrade handshake)", href:"#" },
+    { name:"gRPC & Protobuf", tag:"must", href:"#" },
+    { name:"GraphQL", href:"#" },
+  ]},
+  { track:"CI/CD & DevOps", color:"--l-cicd", stations:[
+    { name:"Docker & Podman", href:"Docker/", subs:[{name:"images, layers, multi-stage"}] },
+    { name:"Kubernetes", tag:"must", href:"Kubernetes/", subs:[{name:"deployments, services, ingress"}] },
+    { name:"GitHub Actions & Jenkins", href:"Git/" },
+    { name:"Terraform & IaC (vs CloudFormation)", tag:"new", href:"#" },
+    { name:"Azure / PCF (breadth)", href:"#" },
+  ]},
+  { track:"AWS", color:"--l-aws", stations:[
+    { name:"Lambda & serverless (you've built this)", tag:"must", href:"AWS/" },
+    { name:"Core services (S3/EC2/RDS/SQS)", href:"AWS/" },
+    { name:"IAM & security", href:"AWS/" },
+    { name:"Architecture patterns", tag:"senior", href:"AWS/" },
+  ]},
+  { track:"AI / RAG", color:"--l-ai", stations:[
+    { name:"LLM & prompting basics", tag:"new", href:"AI/" },
+    { name:"RAG fundamentals", tag:"new", href:"AI/", subs:[{name:"chunking & retrieval"},{name:"vector stores & embeddings"}] },
+    { name:"LangChain", tag:"new", href:"AI/", subs:[{name:"chains, tools, memory"}] },
+    { name:"LangGraph", tag:"new", href:"AI/", subs:[{name:"stateful agent graphs"},{name:"nodes, edges, checkpoints"}] },
+    { name:"Spring AI (do RAG in Java)", tag:"senior", href:"AI/" },
+    { name:"FastAPI for serving models", href:"Python/" },
+  ]},
+];
+
+const KEY="roadmap.visited.v2";
+let visited=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+const save=()=>localStorage.setItem(KEY,JSON.stringify([...visited]));
+const id=(t,s,x="")=>`${t}::${s}${x}`;
+const map=document.getElementById("map"); let total=0;
+
+ROADMAP.forEach((trk,ti)=>{
+  trk.stations.forEach((st)=>{ total++; (st.subs||[]).forEach(()=>total++); });
+  const sec=document.createElement("section"); sec.className="track";
+  sec.innerHTML=`<div class="track-head"><span class="line-pill" style="background:var(${trk.color})"></span>
+    <h2>${trk.track}</h2><span class="line-pct" data-line="${ti}"></span></div>
+    <div class="line" style="--line:var(${trk.color})"></div>`;
+  const line=sec.querySelector(".line");
+  trk.stations.forEach((st,si)=>{
+    const sid=id(ti,si), hasSub=st.subs&&st.subs.length;
+    const el=document.createElement("div"); el.className="station"+(visited.has(sid)?" done":"");
+    const tags=[st.tag?`<span class="tag ${st.tag}">${st.tag}</span>`:""].join("");
+    const nameEl=st.href&&st.href!=="#"?`<a class="name" href="${st.href}" target="_top">${st.name}</a>`:`<span class="name">${st.name}</span>`;
+    el.innerHTML=`<button class="dot ${hasSub?'interchange':''}" data-id="${sid}" aria-label="Toggle ${st.name}"></button><div class="stop">${nameEl}${tags}</div>`;
+    if(hasSub){
+      const br=document.createElement("div"); br.className="branch";
+      st.subs.forEach((sub,bi)=>{
+        const bid=id(ti,si,"-"+bi);
+        const s=document.createElement("span"); s.className="sub"+(visited.has(bid)?" done":"");
+        s.dataset.id=bid; s.setAttribute("role","button"); s.tabIndex=0;
+        s.innerHTML=`<span class="mini"></span>${sub.name}`;
+        br.appendChild(s);
+      });
+      el.appendChild(br);
+    }
+    line.appendChild(el);
+  });
+  map.appendChild(sec);
+});
+document.getElementById("totalN").textContent=total;
+
+function toggle(node,tid){ if(visited.has(tid))visited.delete(tid);else visited.add(tid); node.classList.toggle("done"); save(); refresh(); }
+map.addEventListener("click",e=>{
+  const dot=e.target.closest(".dot"); if(dot){toggle(dot.closest(".station"),dot.dataset.id);return;}
+  const sub=e.target.closest(".sub"); if(sub&&!e.target.closest("a"))toggle(sub,sub.dataset.id);
+});
+map.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("sub")){e.preventDefault();toggle(e.target,e.target.dataset.id);} });
+function refresh(){
+  const done=visited.size;
+  document.getElementById("doneN").textContent=done;
+  document.getElementById("barFill").style.width=(total?done/total*100:0)+"%";
+  document.querySelectorAll(".line-pct").forEach(p=>{
+    const ti=+p.dataset.line,trk=ROADMAP[ti]; let t=0,d=0;
+    trk.stations.forEach((st,si)=>{ t++; if(visited.has(id(ti,si)))d++; (st.subs||[]).forEach((_,bi)=>{t++; if(visited.has(id(ti,si,"-"+bi)))d++;}); });
+    p.textContent=`${d}/${t}`;
+  });
+}
+document.getElementById("resetBtn").addEventListener("click",()=>{ visited.clear(); save();
+  document.querySelectorAll(".done").forEach(n=>n.classList.remove("done")); refresh(); });
+refresh();
+</script>
+</body>
+</html>

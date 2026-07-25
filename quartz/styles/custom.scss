@@ -2,19 +2,60 @@
 
 // =====================================================================
 //  Quartz 5 custom styles — Interview-prep site
-//  Drop this in:  quartz/styles/custom.scss   (never edit /quartz core)
+//  Goes in:  quartz/styles/custom.scss   (in the REPO, not the vault)
 // =====================================================================
 
 // ---------------------------------------------------------------------
-//  1.  RETYPE-STYLE CARD GRID for folder listings  (the drill-down)
-//  Quartz renders folder/tag index pages via the PageList component:
+//  1. HOMEPAGE DASHBOARD  (used by content/index.md)
+// ---------------------------------------------------------------------
+.dash-hero {
+  margin: 0.5rem 0 2rem;
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 0.4rem; letter-spacing: -0.02em; }
+  p  { color: var(--gray); font-size: 1.05rem; margin: 0; max-width: 46ch; }
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+  margin: 0.75rem 0 2rem;
+}
+
+a.dash-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--lightgray);
+  border-left: 3px solid var(--secondary);
+  border-radius: 12px;
+  background: var(--light);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+
+  .ico { font-size: 1.7rem; line-height: 1; }
+  .t   { font-weight: 600; font-size: 1rem; color: var(--dark); }
+  .d   { font-size: 0.82rem; color: var(--gray); line-height: 1.35; }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    border-left-color: var(--tertiary);
+  }
+}
+// accent stripe per topic (matches folder colours below)
+a.dash-card[href*="Java"]          { border-left-color: #4f86c6; }
+a.dash-card[href*="DSA"]           { border-left-color: #57a773; }
+a.dash-card[href*="Microservices"] { border-left-color: #c65f4f; }
+a.dash-card[href*="Kafka"]         { border-left-color: #8a63d2; }
+a.dash-card[href*="AWS"]           { border-left-color: #e08e45; }
+a.dash-card[href*="Refresher"]     { border-left-color: #d9a441; }
+
+// ---------------------------------------------------------------------
+//  2. RETYPE-STYLE CARD GRID for folder listings (the drill-down)
+//     Quartz renders folder index pages via PageList:
 //     ul.section-ul > li.section-li > .section
-//  We turn that list into a responsive card grid. Native links => routing
-//  stays correct on GitHub Pages project sites. No markup in your notes.
-//
-//  NOTE: if cards don't appear, right-click a listing item -> Inspect and
-//  confirm the classes are still .section-ul / .section-li in your Quartz
-//  build, then adjust the two selectors below to match.
 // ---------------------------------------------------------------------
 ul.section-ul {
   display: grid;
@@ -24,7 +65,6 @@ ul.section-ul {
   margin: 0;
   list-style: none;
 }
-
 li.section-li {
   margin: 0;
   padding: 1.25rem;
@@ -33,52 +73,31 @@ li.section-li {
   background: var(--light);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 
-  // flatten Quartz's default inner date/title/tags grid into a stacked card
-  & > .section {
-    display: block;
-  }
-
-  .meta {
-    opacity: 0.7;
-    font-size: 0.8rem;
-    margin-top: 0.4rem;
-  }
+  & > .section { display: block; }
+  .meta { opacity: 0.7; font-size: 0.8rem; margin-top: 0.4rem; }
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.12);
     border-color: var(--secondary);
   }
 }
-
-// ---------------------------------------------------------------------
-//  2.  TOPIC ACCENT STRIPES  (optional colour-coding)
-//  Add e.g.  cssclasses: [topic-java]  to a folder's index.md frontmatter,
-//  or tag-based — here we key off the tag pills Quartz already renders.
-// ---------------------------------------------------------------------
 li.section-li:has(a[href*="/Java"])          { border-top: 3px solid #4f86c6; }
 li.section-li:has(a[href*="/DSA"])           { border-top: 3px solid #57a773; }
 li.section-li:has(a[href*="/Microservices"]) { border-top: 3px solid #c65f4f; }
 li.section-li:has(a[href*="/Kafka"])         { border-top: 3px solid #8a63d2; }
+li.section-li:has(a[href*="/AWS"])           { border-top: 3px solid #e08e45; }
 
 // ---------------------------------------------------------------------
-//  3.  FLASHCARD-STYLE COLLAPSIBLE CALLOUTS
-//  Makes [!question]- callouts read like tappable cards on the site.
+//  3. FLASHCARD-STYLE COLLAPSIBLE CALLOUTS
 // ---------------------------------------------------------------------
 .callout[data-callout="question"] {
   border-radius: 10px;
-
-  &.is-collapsed {
-    cursor: pointer;
-  }
-  .callout-title {
-    font-weight: 600;
-  }
+  &.is-collapsed { cursor: pointer; }
+  .callout-title { font-weight: 600; }
 }
 
 // ---------------------------------------------------------------------
-//  4.  A tighter reading width for cheat-sheet recall
+//  4. Comfortable reading width for cheat-sheet recall
 // ---------------------------------------------------------------------
-.center article {
-  line-height: 1.55;
-}
+.center article { line-height: 1.55; }

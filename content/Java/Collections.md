@@ -1,7 +1,8 @@
 ---
 publish: true
 title: Collection
-draft: "false"
+tags:
+  - 
 ---
 
 - Array

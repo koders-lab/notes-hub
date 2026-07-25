@@ -265,7 +265,7 @@ plugins:
       subdir: plugin
     enabled: true
     options:
-      theme: zenith
+      theme: hackthebox
   - source: "@quartz-community/obsidian-plugin-excalidraw"
     enabled: true
     options:

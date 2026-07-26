@@ -20,26 +20,99 @@ configuration:
       body: Inter
       code: JetBrains Mono
     colors:
+      # ── ACTIVE: Everforest (warm, eye-comfort) ──────────────────
+      # To switch palettes: swap the hex values below with one of the
+      # alternates in the commented block at the bottom of colors.
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#fdf6e3"          # Everforest light bg — warm cream
+        lightgray: "#e6e2cc"
+        gray: "#a6b0a0"
+        darkgray: "#5c6a72"       # soft slate body text
+        dark: "#4c5a5f"           # headers
+        secondary: "#8da101"      # muted moss accent
+        tertiary: "#93b259"
+        highlight: "rgba(141, 161, 1, 0.10)"
+        textHighlight: "#dfa00088"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#2d353b"          # Everforest dark bg — soft forest charcoal
+        lightgray: "#3d484d"
+        gray: "#7a8478"
+        darkgray: "#d3c6aa"       # warm sand text — signature Everforest fg
+        dark: "#e6e2cc"           # headers
+        secondary: "#a7c080"      # soft sage green, low glare
+        tertiary: "#83c092"
+        highlight: "rgba(167, 192, 128, 0.12)"
+        textHighlight: "#dbbc7f40"
+      # ══════════════════════════════════════════════════════════════
+      # ALTERNATE PALETTES — to use one, copy its values up into the
+      # lightMode/darkMode blocks above. Keep "Use Quartz Themes" OFF.
+      # ══════════════════════════════════════════════════════════════
+      #
+      # ── OPTION 2: Warm Paper + Dusty Blue (most neutral, Apple-Books-ish) ──
+      # lightMode:
+      #   light: "#faf6ee"          # warm paper, not white
+      #   lightgray: "#e7e0d3"
+      #   gray: "#a89f8d"
+      #   darkgray: "#4a4640"       # soft ink body text
+      #   dark: "#33302a"           # headers — warm near-black
+      #   secondary: "#7a95a8"      # dusty blue accent
+      #   tertiary: "#93a9b8"
+      #   highlight: "rgba(122, 149, 168, 0.10)"
+      #   textHighlight: "#e8d9a888"
+      # darkMode:
+      #   light: "#1c1b19"          # warm charcoal, not black
+      #   lightgray: "#302e2a"
+      #   gray: "#6b665d"
+      #   darkgray: "#cfc9bd"       # warm off-white text
+      #   dark: "#ece7db"           # headers
+      #   secondary: "#8fa9bb"      # soft dusty blue, low glare
+      #   tertiary: "#7089a0"
+      #   highlight: "rgba(143, 169, 187, 0.12)"
+      #   textHighlight: "#c9b87d40"
+      #
+      # ── OPTION 3: Sage (muted green, softer than Everforest) ──────────────
+      # lightMode:
+      #   light: "#faf6ee"
+      #   lightgray: "#e7e0d3"
+      #   gray: "#a89f8d"
+      #   darkgray: "#4a4640"
+      #   dark: "#33302a"
+      #   secondary: "#5c7a6b"      # muted sage accent
+      #   tertiary: "#8a9b83"
+      #   highlight: "rgba(92, 122, 107, 0.10)"
+      #   textHighlight: "#e8d9a888"
+      # darkMode:
+      #   light: "#1c1b19"
+      #   lightgray: "#302e2a"
+      #   gray: "#6b665d"
+      #   darkgray: "#cfc9bd"
+      #   dark: "#ece7db"
+      #   secondary: "#9db89f"      # soft sage, low glare
+      #   tertiary: "#7d9a86"
+      #   highlight: "rgba(157, 184, 159, 0.12)"
+      #   textHighlight: "#c9b87d40"
+      #
+      # ── OPTION 4: Solarized (classic low-contrast, blue-green cast) ───────
+      # lightMode:
+      #   light: "#fdf6e3"          # solarized base3
+      #   lightgray: "#eee8d5"      # base2
+      #   gray: "#93a1a1"           # base1
+      #   darkgray: "#586e75"       # base01 body
+      #   dark: "#073642"           # base02 headers
+      #   secondary: "#268bd2"      # solarized blue
+      #   tertiary: "#2aa198"       # cyan
+      #   highlight: "rgba(38, 139, 210, 0.10)"
+      #   textHighlight: "#b5890088"
+      # darkMode:
+      #   light: "#002b36"          # base03 bg
+      #   lightgray: "#073642"      # base02
+      #   gray: "#586e75"           # base01
+      #   darkgray: "#93a1a1"       # base1 text
+      #   dark: "#eee8d5"           # base2 headers
+      #   secondary: "#268bd2"      # blue
+      #   tertiary: "#2aa198"       # cyan
+      #   highlight: "rgba(38, 139, 210, 0.12)"
+      #   textHighlight: "#b5890040"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: false

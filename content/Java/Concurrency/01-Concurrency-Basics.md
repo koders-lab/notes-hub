@@ -6,6 +6,7 @@ tags:
   - concurrency
   - refresher
   - flashcards
+  - java/concurrency
 ---
 
 ## TL;DR ⚡

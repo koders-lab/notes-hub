@@ -1418,3 +1418,26 @@ tutorial](https://www.youtube.com/watch?v=ZBJ0u9MaKtM\&t=1523s)
 
 [Garbage collection in Java, with Animation and discussion of G1
 GC](https://www.youtube.com/watch?v=UnaNQgzw4zY\&t=2046s)s
+
+---
+
+## References
+
+**Official (authoritative):**
+
+- The Java Virtual Machine Specification (Java SE 17) — https://docs.oracle.com/javase/specs/jvms/se17/html/
+- The Java Language Specification — https://docs.oracle.com/javase/specs/
+- HotSpot VM / GC Tuning Guide — https://docs.oracle.com/en/java/javase/17/gctuning/
+- JEP 122 — Remove the Permanent Generation (PermGen → Metaspace, Java 8) — https://openjdk.org/jeps/122
+
+**Deep-dive / learning:**
+
+- "Java Performance: The Definitive Guide" — Scott Oaks (O'Reilly)
+- "The Java Virtual Machine Specification" (book) — Lindholm, Yellin et al.
+- Aleksey Shipilëv's JVM/GC articles — https://shipilev.net/
+- Baeldung JVM series — https://www.baeldung.com/jvm-series
+
+## See also
+
+- [[JVM Memory ↔ Thread Safety (the bridge)]]
+- [[Garbage Collection — Full Notes]]

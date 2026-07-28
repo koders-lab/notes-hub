@@ -1,9 +1,11 @@
-google adk
-RAG
-MultiAgent
+- fastApi
+- RAG
+  - https://www.analyticsvidhya.com/courses/building-rag-applications/?utm\_source=new\_course\_home\_page
+- \~google adk ~ / Langchain
+- MultiAgent
 
 Python
-flask framework, fast api, MCP
+flask framework, fastApi, MCP
 agent,  langchain / langraph
 python with AI
 multi agent

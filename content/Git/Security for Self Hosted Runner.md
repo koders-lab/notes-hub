@@ -1,3 +1,7 @@
+---
+publish: true
+---
+
 Preventing a malicious pull request from compromising your cloud network when using public self-hosted runners requires
 
 - strict network isolation,

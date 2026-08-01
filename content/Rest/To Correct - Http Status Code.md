@@ -1,10 +1,5 @@
 #flashcards
 
-> [!info] How to use These cards work with the **Spaced Repetition** community plugin.
->
-> - `Question::Answer` = one-way card
-> - `Question:::Answer` = two-way card (tested in both directions) The `#flashcards` tag at the top is what tells the plugin to scan this note.
-
 ## Category buckets
 
 1xx:::Informational — request received, continuing 2xx:::Success — request received, understood, accepted 3xx:::Redirection — further action needed (resource moved) 4xx:::Client error — bad request from the client's side 5xx:::Server error — server failed to fulfil a valid request

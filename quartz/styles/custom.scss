@@ -120,3 +120,52 @@ article li > p {
 article li:has(> p) {
     margin-bottom: 1rem !important;
 }
+
+// ---------------------------------------------------------------------
+//  6. Trying to add svg to topics and page and folder icons, not working
+// ---------------------------------------------------------------------
+
+/* 1. Remove the dark background highlight pill from dynamically generated cards */
+.section-body a,
+.grid-page-container a,
+.page-listing a {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-body a span,
+.grid-page-container a span {
+  background: transparent !important;
+}
+
+/* 2. Set a default icon for all dynamic folder/page cards */
+.section-body a::before,
+.grid-page-container a::before {
+  content: "📁 ";
+  font-size: 1rem;
+}
+
+/* 3. Target specific dynamic folders by their href/path */
+.section-body a[href*="/map"]::before,
+.grid-page-container a[href*="/map"]::before {
+  content: "🗺️ ";
+}
+
+.section-body a[href*="/collection"]::before,
+.grid-page-container a[href*="/collection"]::before {
+  content: "📚 ";
+}
+
+.section-body a[href*="/java"]::before,
+.grid-page-container a[href*="/java"]::before {
+  content: "☕ ";
+}
+
+.section-body a[href*="/concurrency"]::before,
+.grid-page-container a[href*="/concurrency"]::before {
+  content: "⚡ ";
+}

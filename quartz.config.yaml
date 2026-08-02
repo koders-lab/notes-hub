@@ -283,11 +283,13 @@ layout:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right:
+          - backlinks
     tag:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right:
+          - back
     canvas: {}
     bases: {}

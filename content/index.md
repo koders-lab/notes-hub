@@ -9,32 +9,88 @@ title: Notes Hub
 </div>
 
 ## Topics
+<div class="dash-grid">
+  <a class="dash-card" href="AWS/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/amazonwebservices/original-wordmark.svg">
+    </span>
+  </a>
 
+  <a class="dash-card" href="Docker/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/docker/original-wordmark.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="Git/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/git/original.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="Java/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/java/original-wordmark.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="Microservices-Patterns/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/java/original-wordmark.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="Python/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/python/original-wordmark.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="Spring-Boot/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/spring/original.svg">
+    </span>
+  </a>
+
+  <a class="dash-card" href="System-Design/">
+    <span class="ico">
+      <img src="https://devicon-website.vercel.app/api/java/original-wordmark.svg">
+    </span>
+  </a>
+</div>
+
+## Testing
+<!-- <div class="dash-grid">
+  <a class="dash-card" href="Java/">
+    <span class="ico">☕</span><span class="t">Java</span>
+    <span class="d">Core, collections, concurrency, JVM</span>
+  </a>
+
+  <!-- <a class="dash-card" href="Java/">
+    <span class="ico">
+      <img src="<img src="https://devicon-website.vercel.app/api/java/original-wordmark.svg"></img>" alt="Java Icon" width="24" height="24">
+    </span>
+    <span class="t">Java</span>
+    <!-- <span class="d">Core, collections, concurrency, JVM</span> -->
+  <!-- </a> -->
+<!-- </div> --> --> -->
+
+
+<!-- 
 <div class="dash-grid">
   <a class="dash-card" href="AI/">
     <span class="ico">🤖</span><span class="t">AI</span>
     <span class="d">Spring AI, RAG, LLM concepts</span>
   </a>
-  <a class="dash-card" href="AWS/">
-    <span class="ico">☁️</span><span class="t">AWS</span>
-    <span class="d">Lambda, core services, architecture</span>
-  </a>
   <a class="dash-card" href="Design-Pattern-GOF/">
     <span class="ico">🧠</span><span class="t">Design Patterns</span>
     <span class="d">GoF &amp; when to reach for each</span>
-  </a>
-  <a class="dash-card" href="Docker/">
-    <span class="ico">🐳</span><span class="t">Docker</span>
-    <span class="d">Containers, images, layers</span>
   </a>
   <a class="dash-card" href="DSA/">
     <span class="ico">🧩</span><span class="t">DSA</span>
     <span class="d">Patterns &amp; problem-solving</span>
   </a>
-  <a class="dash-card" href="Git/">
-    <span class="ico">🔀</span><span class="t">Git</span>
-    <span class="d">Workflows &amp; internals</span>
-  </a>
+
   <a class="dash-card" href="Java/">
     <span class="ico">☕</span><span class="t">Java</span>
     <span class="d">Core, collections, concurrency, JVM</span>
@@ -65,7 +121,7 @@ title: Notes Hub
   </a>
 </div>
 
-## Start here
+## TODO
 
 <div class="dash-grid">
   <a class="dash-card" href="Refresher/">
@@ -76,7 +132,7 @@ title: Notes Hub
     <span class="ico">🗺️</span><span class="t">Maps of Content</span>
     <span class="d">Guided learning paths per topic</span>
   </a>
-</div>
+</div> -->
 
 <div class="page-navigation" style="display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--lightgray);">
   <a class="prev-page" href="#" style="text-decoration: none;">← Previous Track</a>

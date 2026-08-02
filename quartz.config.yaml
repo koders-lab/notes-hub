@@ -41,6 +41,13 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#b3aa0288"
 plugins:
+  - source: github:quartz-community/folder-page
+    enabled: true
+    options:
+      showFolderCount: true
+      showSubfolders : true
+      prefixFolders : true
+    order: 20
   - source: "@quartz-community/created-modified-date"
     enabled: false
     options:
@@ -155,6 +162,11 @@ plugins:
     enabled: true
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      title: "Explorer"
+      folderClickBehavior: "link"  # Change from "collapse" to "link"
+      folderDefaultState: "collapsed"
+      useSavedState: true
     layout:
       position: left
       priority: 50

@@ -169,3 +169,61 @@ article li:has(> p) {
 .grid-page-container a[href*="/concurrency"]::before {
   content: "⚡ ";
 }
+
+// ---------------------------------------------------------------------
+//  7. Trying to add svg to topics and page and folder icons, not working
+// ---------------------------------------------------------------------
+
+/* Ensure the card layout uses a clean vertical or structured layout */
+// .dash-card {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   gap: 1rem;
+//   padding: 1.5rem;
+//   text-decoration: none;
+
+//   /* Increase container size to make the icon larger */
+//   .ico {
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+//     width: 120px;   /* Increased from 48px to make it larger */
+//     height: 120px;  /* Match height for proportions */
+
+//     img, svg {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: contain;
+//     }
+//   }
+
+//   .t {
+//     font-weight: 600;
+//     font-size: 1.15rem;
+//   }
+  
+//   .d {
+//     font-size: 0.9rem;
+//     opacity: 0.8;
+//   }
+// }
+
+// only icon
+.dash-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  .ico {
+    width: 100%;
+    height: 90%;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

@@ -103,12 +103,20 @@ li.section-li:has(a[href*="/AWS"])           { border-top: 3px solid #e08e45; }
 .center article { line-height: 1.55; }
 
 
-// ------------
-//  5. Break line fix
-//--------------
-/* Force consecutive empty lines to display height on Quartz web pages */
-p:empty, br {
-    content: "" !important;
-    display: block !important;
-    margin-top: 1.5em !important;
+// ---------------------------------------------------------------------
+//  5. Show bullets spacing in read mode, same as edit mode
+// ---------------------------------------------------------------------
+/* Reset standard website bullet spacing */
+article li {
+    margin-bottom: 0px !important;
+}
+article li > p {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    display: inline;
+}
+
+/* Only add a gap below a bullet if you explicitly wrote a blank line after it */
+article li:has(> p) {
+    margin-bottom: 1rem !important;
 }

@@ -101,3 +101,14 @@ li.section-li:has(a[href*="/AWS"])           { border-top: 3px solid #e08e45; }
 //  4. Comfortable reading width for cheat-sheet recall
 // ---------------------------------------------------------------------
 .center article { line-height: 1.55; }
+
+
+// ------------
+//  5. Break line fix
+//--------------
+/* Force consecutive empty lines to display height on Quartz web pages */
+p:empty, br {
+    content: "" !important;
+    display: block !important;
+    margin-top: 1.5em !important;
+}

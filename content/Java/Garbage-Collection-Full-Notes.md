@@ -34,8 +34,8 @@ flowchart TD
     D["Object D<br/>(unreferenced)"]
     E["Object E"] --> D
     D -.- G(("GARBAGE:<br/>D & E<br/>unreachable"))
-    classDef live fill:#9FE1CB,stroke:#0F6E56,color:#04342C;
-    classDef dead fill:#F7C1C1,stroke:#A32D2D,color:#501313;
+    classDef live fill:#9FE1CB,stroke:#0F6E56,color:#f44336;
+    classDef dead fill:#F7C1C1,stroke:#A32D2D,color:#00008B;
     class R,A,B,C live;
     class D,E dead;
 ```
